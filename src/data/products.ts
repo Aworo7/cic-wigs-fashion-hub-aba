@@ -1,7 +1,6 @@
 import { Product, Category } from '../types';
 
 export const PRODUCTS: Product[] = [
-  // --- 1. HUMAN HAIR WIGS & HAIR CARE ---
   {
     id: 'cic-wig-01',
     name: 'Raw Double-Drawn Bone Straight Frontal Wig (100% Human Hair)',
@@ -15,15 +14,14 @@ export const PRODUCTS: Product[] = [
     minWholesaleQty: 3,
     rating: 5.0,
     reviewsCount: 84,
-    image: https://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/main/src/assets/images/product_human_hair_wig_1793771832193.jpg',
+    image: '/images/product_human_hair_wig_1793771832193.jpg',
     colors: [
       { name: 'Natural Black 1B', hex: '#1a1918', class: 'bg-[#1a1918]' },
       { name: 'Piano Highlight 4/27', hex: '#63472c', class: 'bg-[#63472c]' },
       { name: 'Burgundy 99J', hex: '#4a1525', class: 'bg-[#4a1525]' }
     ],
     sizes: ['16 Inch', '20 Inch', '24 Inch', '28 Inch'],
-    description:
-      'Direct from the CIC Wigs Aba hub. 100% authentic unprocessed human hair with aligned cuticles. Features a melt-skin invisible HD swiss lace frontal, pre-bleached knots, and an elastic security strap that requires zero glue for an all-day natural hairline.',
+    description: 'Direct from the CIC Wigs Aba hub. 100% authentic unprocessed human hair with aligned cuticles. Features a melt-skin invisible HD swiss lace frontal, pre-bleached knots, and an elastic security strap that requires zero glue for an all-day natural hairline.',
     inclusivityHighlights: [
       'Adjustable internal cap fits small, medium, and large head circumferences (21"–23.5")',
       'Zero synthetic fillers; takes bleach, heat up to 230°C, and custom coloring flawlessly',
@@ -54,15 +52,14 @@ export const PRODUCTS: Product[] = [
     minWholesaleQty: 3,
     rating: 4.9,
     reviewsCount: 142,
-    image: 'https://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/main/src/assets/images/service_wig_revamp_styling_1793771831838.jpg',
+    image: '/images/service_wig_revamp_styling_1793771831838.jpg',
     colors: [
       { name: 'Silk Press Straight', hex: '#262626', class: 'bg-[#262626]' },
       { name: 'Bouncy Wand Curls', hex: '#524036', class: 'bg-[#524036]' },
       { name: 'Body Wave Revival', hex: '#785b46', class: 'bg-[#785b46]' }
     ],
     sizes: ['One Size'],
-    description:
-      'Don’t throw away your old wigs! Confidence Okonkwo’s signature revamp treatment transforms dull, stiff, or tangled hair back to salon-fresh glass luster. Includes intensive deep-conditioning detox, knot re-bleaching, lace wash, customized baby hair restyling, and precision hot-comb pressing.',
+    description: 'Don’t throw away your old wigs! Confidence Okonkwo’s signature revamp treatment transforms dull, stiff, or tangled hair back to salon-fresh glass luster. Includes intensive deep-conditioning detox, knot re-bleaching, lace wash, customized baby hair restyling, and precision hot-comb pressing.',
     inclusivityHighlights: [
       'We accept waybills nationwide to Aba: from Lagos, Port Harcourt, Abuja, Owerri, Enugu, and international drops',
       'Works wonders on bone straight, body wave, deep curls, and bob wigs of any density',
@@ -80,8 +77,6 @@ export const PRODUCTS: Product[] = [
     inStock: true,
     isWholesaleEligible: true
   },
-
-  // --- 2. NIGHTWEAR (ABA DIRECT FACTORY) ---
   {
     id: 'cic-nightwear-01',
     name: 'Serene Mulberry Silk Lace Slip & Robe Set',
@@ -95,16 +90,15 @@ export const PRODUCTS: Product[] = [
     minWholesaleQty: 6,
     rating: 4.9,
     reviewsCount: 68,
-    image: 'https://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/main/src/assets/images/product_silk_nightwear_1793771102697.jpg',
-    secondaryImage: 'https://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/main/src/assets/images/hero_cic_nightwear_loungewear_1793771101080.jpg',
+    image: '/images/product_silk_nightwear_1793771102697.jpg',
+    secondaryImage: '/images/hero_cic_nightwear_loungewear_1793771101080.jpg',
     colors: [
       { name: 'Dusky Rose', hex: '#b78386', class: 'bg-[#b78386]' },
       { name: 'Champagne Glow', hex: '#e8d8c8', class: 'bg-[#e8d8c8]' },
       { name: 'Midnight Onyx', hex: '#1e2022', class: 'bg-[#1e2022]' }
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'],
-    description:
-      'The crown jewel of CIC Nightwear Aba. Crafted with a liquid-like satin drape that glides over curves without clinging. Features delicate scalloped lace detailing along the neckline and hem, adjustable bias-cut straps, and a matching wrap robe for quiet luxury at home.',
+    description: 'The crown jewel of CIC Nightwear Aba. Crafted with a liquid-like satin drape that glides over curves without clinging. Features delicate scalloped lace detailing along the neckline and hem, adjustable bias-cut straps, and a matching wrap robe for quiet luxury at home.',
     inclusivityHighlights: [
       'Tailored with bias-cut fluidity to naturally flatter Petite to 3XL frames',
       'Adjustable slide straps for custom bust lift and coverage (Cup A through E)',
@@ -135,15 +129,14 @@ export const PRODUCTS: Product[] = [
     minWholesaleQty: 6,
     rating: 4.9,
     reviewsCount: 53,
-    image: 'https://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/main/src/assets/images/hero_cic_nightwear_loungewear_1793771101080.jpg',
+    image: '/images/hero_cic_nightwear_loungewear_1793771101080.jpg',
     colors: [
       { name: 'Champagne Silk', hex: '#e8d8c8', class: 'bg-[#e8d8c8]' },
       { name: 'Blush Mauve', hex: '#cca4a7', class: 'bg-[#cca4a7]' },
       { name: 'Emerald Velvet', hex: '#264e36', class: 'bg-[#264e36]' }
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'],
-    description:
-      'Channel timeless glamour every morning and night. The Palais Kimono features a dramatic kimono sleeve, an interior security tie to prevent accidental slips, a wide sash belt, and hidden side seam pockets. The smooth sateen fabric provides full opacity and luxurious skin glide.',
+    description: 'Channel timeless glamour every morning and night. The Palais Kimono features a dramatic kimono sleeve, an interior security tie to prevent accidental slips, a wide sash belt, and hidden side seam pockets. The smooth sateen fabric provides full opacity and luxurious skin glide.',
     inclusivityHighlights: [
       'Interior modesty security tie guarantees a snug, slip-free closure on all silhouettes',
       'Accommodates broad shoulders and full bustlines comfortably without tightness',
@@ -161,8 +154,6 @@ export const PRODUCTS: Product[] = [
     inStock: true,
     isWholesaleEligible: true
   },
-
-  // --- 3. LOUNGEWEAR ---
   {
     id: 'cic-loungewear-01',
     name: 'CloudKnit Ribbed Two-Piece Lounge Co-Ord',
@@ -176,15 +167,14 @@ export const PRODUCTS: Product[] = [
     minWholesaleQty: 6,
     rating: 4.8,
     reviewsCount: 94,
-    image: 'https://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/main/src/assets/images/product_cozy_loungewear_1793771102073.jpg',
+    image: '/images/product_cozy_loungewear_1793771102073.jpg',
     colors: [
       { name: 'Oat Milk Cream', hex: '#e6ded4', class: 'bg-[#e6ded4]' },
       { name: 'Soft Sage', hex: '#a8b5a0', class: 'bg-[#a8b5a0]' },
       { name: 'Warm Mocha', hex: '#6f5647', class: 'bg-[#6f5647]' }
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'],
-    description:
-      'The quintessential everyday uniform designed to blur the line between relaxing at home and looking impeccably put-together outdoors. Features a breathable ribbed organic cotton-modal knit that is soft against sensitive skin, an elasticized non-digging drawstring waist, and relaxed wide legs.',
+    description: 'The quintessential everyday uniform designed to blur the line between relaxing at home and looking impeccably put-together outdoors. Features a breathable ribbed organic cotton-modal knit that is soft against sensitive skin, an elasticized non-digging drawstring waist, and relaxed wide legs.',
     inclusivityHighlights: [
       'Inclusive sizing from XS through 3XL with generous 4-way stretch',
       'Ultra-gentle wide elastic waistband that accommodates maternity & postpartum bodies',
@@ -202,8 +192,6 @@ export const PRODUCTS: Product[] = [
     inStock: true,
     isWholesaleEligible: true
   },
-
-  // --- 4. STYLISH BAGS ---
   {
     id: 'cic-bag-01',
     name: 'Sovereign Pebbled Leather Dual Tote & Satchel',
@@ -217,15 +205,14 @@ export const PRODUCTS: Product[] = [
     minWholesaleQty: 3,
     rating: 5.0,
     reviewsCount: 42,
-    image: 'https://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/main/src/assets/images/product_stylish_bag_1793771103336.jpg',
+    image: '/images/product_stylish_bag_1793771103336.jpg',
     colors: [
       { name: 'Caramel Tan', hex: '#9d5b2c', class: 'bg-[#9d5b2c]' },
       { name: 'Truffle Noir', hex: '#242426', class: 'bg-[#242426]' },
       { name: 'Warm Biscuit', hex: '#c5a88c', class: 'bg-[#c5a88c]' }
     ],
     sizes: ['One Size'],
-    description:
-      'Handcrafted from premium scratch-resistant vegan pebbled leather that maintains its structured shape while softening to the touch. Featuring reinforced dual rolled handles, a detachable crossbody strap, and multi-compartment interior storage with protective brass base feet.',
+    description: 'Handcrafted from premium scratch-resistant vegan pebbled leather that maintains its structured shape while softening to the touch. Featuring reinforced dual rolled handles, a detachable crossbody strap, and multi-compartment interior storage with protective brass base feet.',
     inclusivityHighlights: [
       'Ergonomically weighted to minimize shoulder strain during all-day wear',
       'Adjustable 120cm strap accommodates diverse heights and outerwear layers',
@@ -243,8 +230,6 @@ export const PRODUCTS: Product[] = [
     inStock: true,
     isWholesaleEligible: true
   },
-
-  // --- 5. FEMALE INTIMATES & UNDERWEAR ---
   {
     id: 'cic-female-underwear-01',
     name: 'BareComfort Zero-Wire Seamless Bralette & Brief Set',
@@ -258,15 +243,14 @@ export const PRODUCTS: Product[] = [
     minWholesaleQty: 6,
     rating: 4.9,
     reviewsCount: 112,
-    image: 'https://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/main/src/assets/images/product_comfort_underwears_1793771102921.jpg',
+    image: '/images/product_comfort_underwears_1793771102921.jpg',
     colors: [
       { name: 'Nude Almond', hex: '#d1b29a', class: 'bg-[#d1b29a]' },
       { name: 'Rose Clay', hex: '#b3827d', class: 'bg-[#b3827d]' },
       { name: 'Clean Noir', hex: '#1c1b1f', class: 'bg-[#1c1b1f]' }
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'],
-    description:
-      'Say goodbye to poking underwires and restrictive back hooks. Our BareComfort wireless bralette uses bonded micro-stretch bands and breathable removable teardrop pads to lift and support naturally. Paired with high-waist laser-cut briefs that guarantee invisible lines under form-fitting outfits.',
+    description: 'Say goodbye to poking underwires and restrictive back hooks. Our BareComfort wireless bralette uses bonded micro-stretch bands and breathable removable teardrop pads to lift and support naturally. Paired with high-waist laser-cut briefs that guarantee invisible lines under form-fitting outfits.',
     inclusivityHighlights: [
       'Engineered for all body shapes (Cup sizes 30A to 44DD) with zero underwire pressure',
       '100% pure organic cotton antibacterial gusset lining for sensitive intimate wellness',
@@ -284,8 +268,6 @@ export const PRODUCTS: Product[] = [
     inStock: true,
     isWholesaleEligible: true
   },
-
-  // --- 6. MALE UNDERWEAR & ESSENTIALS ---
   {
     id: 'cic-male-underwear-01',
     name: 'Aura Bamboo Ergonomic Stretch Boxer Briefs (3-Pack)',
@@ -299,15 +281,14 @@ export const PRODUCTS: Product[] = [
     minWholesaleQty: 6,
     rating: 4.8,
     reviewsCount: 57,
-    image: 'https://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/main/src/assets/images/product_comfort_underwears_1793771102921.jpg',
+    image: '/images/product_comfort_underwears_1793771102921.jpg',
     colors: [
       { name: 'Slate Heather', hex: '#636c78', class: 'bg-[#636c78]' },
       { name: 'Charcoal Navy', hex: '#2d3748', class: 'bg-[#2d3748]' },
       { name: 'Classic Black', hex: '#171923', class: 'bg-[#171923]' }
     ],
     sizes: ['S', 'M', 'L', 'XL', '2XL', '3XL'],
-    description:
-      'A true game-changer in male comfort essentials. Spun from ultra-soft eco-certified bamboo modal fibers that naturally deter odor and wick moisture 3x faster than traditional cotton. Features an anatomical 3D support contour pouch and flatlock anti-chafing seams.',
+    description: 'A true game-changer in male comfort essentials. Spun from ultra-soft eco-certified bamboo modal fibers that naturally deter odor and wick moisture 3x faster than traditional cotton. Features an anatomical 3D support contour pouch and flatlock anti-chafing seams.',
     inclusivityHighlights: [
       'Generous ergonomic 3D pouch provides gentle separation and all-day ventilation',
       'Non-ride-up stay-put leg cuffs designed for active days, workouts, and office hours',
@@ -394,8 +375,7 @@ export const REVIEWS = [
     rating: 5,
     verified: true,
     product: 'Signature Bone-Straight Silk Press & Wig Revamp Service',
-    comment:
-      'I sent two completely dead, tangled 24-inch frontal wigs from Lagos to Confidence in Aba. When they arrived back via peace park, I literally screamed! They are so bone straight, bouncy, and smell heavenly. Confidence is the undisputed wig revamping queen in Nigeria!'
+    comment: 'I sent two completely dead, tangled 24-inch frontal wigs from Lagos to Confidence in Aba. When they arrived back via peace park, I literally screamed! They are so bone straight, bouncy, and smell heavenly. Confidence is the undisputed wig revamping queen in Nigeria!'
   },
   {
     id: 'rev-2',
@@ -403,9 +383,8 @@ export const REVIEWS = [
     location: 'Port Harcourt (Wholesale Reseller)',
     rating: 5,
     verified: true,
-    product: 'Micro-Reseller Starter Pack (₦15,000)',
-    comment:
-      'Confidence’s motto is real: "Come let’s fetch money with nighties, you don’t need a physical shop!" I started with just ₦15,000 on WhatsApp while taking care of my toddler. In my first week, I sold all 3 sets and made ₦11,000 clean profit. Now I order 20 sets every single month!'
+    product: 'Micro-Reseller Starter Pack (N15,000)',
+    comment: 'Confidence’s motto is real: "Come let’s fetch money with nighties, you don’t need a physical shop!" I started with just N15,000 on WhatsApp while taking care of my toddler. In my first week, I sold all 3 sets and made N11,000 clean profit. Now I order 20 sets every single month!'
   },
   {
     id: 'rev-3',
@@ -414,8 +393,7 @@ export const REVIEWS = [
     rating: 5,
     verified: true,
     product: 'Serene Mulberry Silk Lace Slip & Robe Set',
-    comment:
-      'The silk is extraordinarily soft and doesn’t stick to the skin in humid weather! I ordered size 2XL and the fit across my chest and hips is so flattering. My order arrived within 48 hours from Aba. CIC is truly my go-to fashion hub now 💕'
+    comment: 'The silk is extraordinarily soft and doesn’t stick to the skin in humid weather! I ordered size 2XL and the fit across my chest and hips is so flattering. My order arrived within 48 hours from Aba. CIC is truly my go-to fashion hub now'
   },
   {
     id: 'rev-4',
@@ -424,7 +402,6 @@ export const REVIEWS = [
     rating: 5,
     verified: true,
     product: 'Aura Bamboo Ergonomic Stretch Boxer Briefs (3-Pack)',
-    comment:
-      'My wife actually bought these for me while getting her nightwear set. Honestly, the most breathable boxers I own. No rolling, no chafing. 10/10 recommendation for men who care about comfort.'
+    comment: 'My wife actually bought these for me while getting her nightwear set. Honestly, the most breathable boxers I own. No rolling, no chafing. 10/10 recommendation for men who care about comfort.'
   }
 ];
