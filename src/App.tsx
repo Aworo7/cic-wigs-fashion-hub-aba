@@ -7,7 +7,6 @@ import { CartDrawer } from './components/CartDrawer';
 import { SizeGuideModal } from './components/SizeGuideModal';
 import { WigRevampModal } from './components/WigRevampModal';
 import { WholesalePortalModal } from './components/WholesalePortalModal';
-import { PitchModal } from './components/PitchModal';
 import { LegalModal, LegalPageType } from './components/LegalModal';
 import { FAQSection } from './components/FAQSection';
 import { InclusiveStory } from './components/InclusiveStory';
@@ -30,7 +29,6 @@ export default function App() {
   const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
   const [wigRevampOpen, setWigRevampOpen] = useState(false);
   const [wholesaleOpen, setWholesaleOpen] = useState(false);
-  const [pitchOpen, setPitchOpen] = useState(false);
   const [legalModalOpen, setLegalModalOpen] = useState(false);
   const [legalPage, setLegalPage] = useState<LegalPageType>('return-policy');
   const [viewingProduct, setViewingProduct] = useState<Product | null>(null);
@@ -570,10 +568,6 @@ export default function App() {
         currency={currency}
       />
 
-      <PitchModal
-        isOpen={pitchOpen}
-        onClose={() => setPitchOpen(false)}
-      />
 
       {/* Legal Pages Modal (/return-policy, /shipping, /privacy-policy) */}
       <LegalModal
