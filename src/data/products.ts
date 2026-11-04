@@ -15,7 +15,7 @@ export const PRODUCTS: Product[] = [
     minWholesaleQty: 3,
     rating: 5.0,
     reviewsCount: 84,
-    image: '/src/assets/images/product_human_hair_wig_1793771832193.jpg',
+    image: https://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/main/src/assets/images/product_human_hair_wig_1793771832193.jpg',
     colors: [
       { name: 'Natural Black 1B', hex: '#1a1918', class: 'bg-[#1a1918]' },
       { name: 'Piano Highlight 4/27', hex: '#63472c', class: 'bg-[#63472c]' },
