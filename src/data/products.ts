@@ -105,36 +105,14 @@ export const CATEGORY_LABELS: Record<string, string> = {
 export const products = PRODUCTS;
 
 export const REVIEWS = [
-  {
-    id: 1,
-    name: "Amara Johnson",
-    rating: 5,
-    comment: "The wig quality is absolutely amazing! So natural and soft. Will definitely buy again.",
-    productId: 1,
-    date: "2024-12-15"
-  },
-  {
-    id: 2,
-    name: "Sarah Williams",
-    rating: 5,
-    comment: "Best loungewear I've ever owned. Super comfortable and stylish!",
-    productId: 5,
-    date: "2024-12-10"
-  },
-  {
-    id: 3,
-    name: "Chioma Okafor",
-    rating: 4.9,
-    comment: "The kimono robe is pure luxury. My husband loves it too!",
-    productId: 4,
-    date: "2024-12-05"
-  },
-  {
-    id: 4,
-    name: "Grace Mensah",
-    rating: 5,
-    comment: "Excellent revamp service! My old wig looks brand new.",
-    productId: 7,
-    date: "2024-11-28"
-  }
+  { id: 1, name: "Amara Johnson", rating: 5, comment: "The wig quality is absolutely amazing! So natural and soft. Will definitely buy again.", productId: 1, date: "2024-12-15" },
+  { id: 2, name: "Sarah Williams", rating: 5, comment: "Best loungewear I've ever owned. Super comfortable and stylish!", productId: 5, date: "2024-12-10" },
+  { id: 3, name: "Chioma Okafor", rating: 4.9, comment: "The kimono robe is pure luxury. My husband loves it too!", productId: 4, date: "2024-12-05" },
+  { id: 4, name: "Grace Mensah", rating: 5, comment: "Excellent revamp service! My old wig looks brand new.", productId: 7, date: "2024-11-28" }
+];
+
+export const WHOLESALE_PACKS = [
+  { id: 1, name: "Starter Pack - 10 Wigs", price: 850000, items: 10, description: "Perfect for small businesses" },
+  { id: 2, name: "Growth Pack - 25 Wigs", price: 1950000, items: 25, description: "Most popular for growing stores" },
+  { id: 3, name: "Enterprise Pack - 50 Wigs", price: 3500000, items: 50, description: "Best value for large retailers" }
 ];
