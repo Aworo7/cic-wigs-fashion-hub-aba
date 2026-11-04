@@ -15,7 +15,7 @@ export const PRODUCTS: Product[] = [
     minWholesaleQty: 3,
     rating: 5.0,
     reviewsCount: 84,
-    image: https://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/main/src/assets/images/product_human_hair_wig_1793771832193.jpg',
+    image: https://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/main/src/assets/images/product_human_hair_wig_1793771832193.jpg',
     colors: [
       { name: 'Natural Black 1B', hex: '#1a1918', class: 'bg-[#1a1918]' },
       { name: 'Piano Highlight 4/27', hex: '#63472c', class: 'bg-[#63472c]' },
@@ -54,7 +54,7 @@ export const PRODUCTS: Product[] = [
     minWholesaleQty: 3,
     rating: 4.9,
     reviewsCount: 142,
-    image: '/src/assets/images/service_wig_revamp_styling_1793771831838.jpg',
+    image: 'https://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/main/src/assets/images/service_wig_revamp_styling_1793771831838.jpg',
     colors: [
       { name: 'Silk Press Straight', hex: '#262626', class: 'bg-[#262626]' },
       { name: 'Bouncy Wand Curls', hex: '#524036', class: 'bg-[#524036]' },
@@ -95,8 +95,8 @@ export const PRODUCTS: Product[] = [
     minWholesaleQty: 6,
     rating: 4.9,
     reviewsCount: 68,
-    image: '/src/assets/images/product_silk_nightwear_1793771102697.jpg',
-    secondaryImage: '/src/assets/images/hero_cic_nightwear_loungewear_1793771101080.jpg',
+    image: 'https://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/main/src/assets/images/product_silk_nightwear_1793771102697.jpg',
+    secondaryImage: 'https://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/main/src/assets/images/hero_cic_nightwear_loungewear_1793771101080.jpg',
     colors: [
       { name: 'Dusky Rose', hex: '#b78386', class: 'bg-[#b78386]' },
       { name: 'Champagne Glow', hex: '#e8d8c8', class: 'bg-[#e8d8c8]' },
@@ -135,7 +135,7 @@ export const PRODUCTS: Product[] = [
     minWholesaleQty: 6,
     rating: 4.9,
     reviewsCount: 53,
-    image: '/src/assets/images/hero_cic_nightwear_loungewear_1793771101080.jpg',
+    image: 'https://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/main/src/assets/images/hero_cic_nightwear_loungewear_1793771101080.jpg',
     colors: [
       { name: 'Champagne Silk', hex: '#e8d8c8', class: 'bg-[#e8d8c8]' },
       { name: 'Blush Mauve', hex: '#cca4a7', class: 'bg-[#cca4a7]' },
@@ -176,7 +176,7 @@ export const PRODUCTS: Product[] = [
     minWholesaleQty: 6,
     rating: 4.8,
     reviewsCount: 94,
-    image: '/src/assets/images/product_cozy_loungewear_1793771102073.jpg',
+    image: 'https://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/main/src/assets/images/product_cozy_loungewear_1793771102073.jpg',
     colors: [
       { name: 'Oat Milk Cream', hex: '#e6ded4', class: 'bg-[#e6ded4]' },
       { name: 'Soft Sage', hex: '#a8b5a0', class: 'bg-[#a8b5a0]' },
@@ -217,7 +217,7 @@ export const PRODUCTS: Product[] = [
     minWholesaleQty: 3,
     rating: 5.0,
     reviewsCount: 42,
-    image: '/src/assets/images/product_stylish_bag_1793771103336.jpg',
+    image: 'https://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/main/src/assets/images/product_stylish_bag_1793771103336.jpg',
     colors: [
       { name: 'Caramel Tan', hex: '#9d5b2c', class: 'bg-[#9d5b2c]' },
       { name: 'Truffle Noir', hex: '#242426', class: 'bg-[#242426]' },
@@ -258,7 +258,7 @@ export const PRODUCTS: Product[] = [
     minWholesaleQty: 6,
     rating: 4.9,
     reviewsCount: 112,
-    image: '/src/assets/images/product_comfort_underwears_1793771102921.jpg',
+    image: 'https://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/main/src/assets/images/product_comfort_underwears_1793771102921.jpg',
     colors: [
       { name: 'Nude Almond', hex: '#d1b29a', class: 'bg-[#d1b29a]' },
       { name: 'Rose Clay', hex: '#b3827d', class: 'bg-[#b3827d]' },
@@ -299,7 +299,7 @@ export const PRODUCTS: Product[] = [
     minWholesaleQty: 6,
     rating: 4.8,
     reviewsCount: 57,
-    image: '/src/assets/images/product_comfort_underwears_1793771102921.jpg',
+    image: 'https://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/mainhttps://raw.githubusercontent.com/Aworo7/cic-wigs-fashion-hub-aba/main/src/assets/images/product_comfort_underwears_1793771102921.jpg',
     colors: [
       { name: 'Slate Heather', hex: '#636c78', class: 'bg-[#636c78]' },
       { name: 'Charcoal Navy', hex: '#2d3748', class: 'bg-[#2d3748]' },
