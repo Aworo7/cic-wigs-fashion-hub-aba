@@ -103,6 +103,7 @@ export const CATEGORY_LABELS: Record<string, string> = {
 };
 
 export const products = PRODUCTS;
+
 export const REVIEWS = [
   {
     id: 1,
