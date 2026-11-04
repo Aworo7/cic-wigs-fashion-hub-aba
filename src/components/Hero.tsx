@@ -113,8 +113,13 @@ export const Hero: React.FC<HeroProps> = ({
             {/* Hero Card 1: Wigs & Revamp Showcase */}
             <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-4/3 bg-stone-200 group">
               <img
-                src="/src/assets/images/product_human_hair_wig_1793771832193.jpg"
+                src="/images/product_human_hair_wig_1793771832193.jpg"
                 alt="CIC Wigs 100% human hair bone straight frontal wig"
+                onError={(e) => {
+                  if (e.currentTarget.src.includes('/images/')) {
+                    e.currentTarget.src = e.currentTarget.src.replace('/images/', '/');
+                  }
+                }}
                 className="w-full h-full object-cover object-center group-hover:scale-104 transition-transform duration-700 ease-out"
                 loading="eager"
               />
@@ -139,8 +144,13 @@ export const Hero: React.FC<HeroProps> = ({
             {/* Hero Card 2: Luxury Satin Nightwear Aba */}
             <div className="relative rounded-2xl overflow-hidden shadow-lg aspect-16/9 bg-stone-200 group">
               <img
-                src="/src/assets/images/hero_cic_nightwear_loungewear_1793771101080.jpg"
+                src="/images/hero_cic_nightwear_loungewear_1793771101080.jpg"
                 alt="CIC Nightwear Aba satin slip dress and kimono robe"
+                onError={(e) => {
+                  if (e.currentTarget.src.includes('/images/')) {
+                    e.currentTarget.src = e.currentTarget.src.replace('/images/', '/');
+                  }
+                }}
                 className="w-full h-full object-cover object-top group-hover:scale-104 transition-transform duration-700 ease-out"
                 loading="eager"
               />

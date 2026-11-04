@@ -46,8 +46,8 @@ export const WigRevampModal: React.FC<WigRevampModalProps> = ({ isOpen, onClose,
   const currentTier = tiers[selectedTier] || tiers['Bone-Straight Silk Press & Steam Treatment'];
   const formattedPrice =
     currency === 'NGN'
-      ? `₦${currentTier.priceNGN.toLocaleString()}`
-      : `$${currentTier.priceUSD.toLocaleString()}`;
+      ? `₦${(currentTier?.priceNGN || 0).toLocaleString()}`
+      : `$${(currentTier?.priceUSD || 0).toLocaleString()}`;
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -145,7 +145,7 @@ export const WigRevampModal: React.FC<WigRevampModalProps> = ({ isOpen, onClose,
                     </div>
                   </div>
                   <div className="mt-2 text-xs font-bold text-stone-900 tabular-nums">
-                    {currency === 'NGN' ? `₦${tierData.priceNGN.toLocaleString()}` : `$${tierData.priceUSD.toLocaleString()}`}
+                    {currency === 'NGN' ? `₦${(tierData?.priceNGN || 0).toLocaleString()}` : `$${(tierData?.priceUSD || 0).toLocaleString()}`}
                   </div>
                 </button>
               ))}

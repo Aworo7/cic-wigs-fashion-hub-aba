@@ -28,13 +28,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   const [activeImage, setActiveImage] = useState<string>(product.image);
   const [addedToast, setAddedToast] = useState(false);
 
-  const unitPriceNGN = isWholesaleBuy && product.wholesalePriceNGN ? product.wholesalePriceNGN : product.priceNGN;
-  const unitPriceUSD = isWholesaleBuy && product.wholesalePriceUSD ? product.wholesalePriceUSD : product.priceUSD;
+  const unitPriceNGN = isWholesaleBuy && product?.wholesalePriceNGN ? product.wholesalePriceNGN : (product?.priceNGN ?? product?.price ?? 0);
+  const unitPriceUSD = isWholesaleBuy && product?.wholesalePriceUSD ? product.wholesalePriceUSD : (product?.priceUSD ?? 0);
 
   const formattedTotalPrice =
     currency === 'NGN'
-      ? `₦${(unitPriceNGN * quantity).toLocaleString()}`
-      : `$${(unitPriceUSD * quantity).toLocaleString()}`;
+      ? `₦${((unitPriceNGN || 0) * (quantity || 1)).toLocaleString()}`
+      : `$${((unitPriceUSD || 0) * (quantity || 1)).toLocaleString()}`;
 
   const handleAdd = () => {
     onAddToCart(product, selectedSize, selectedColor, quantity, isWholesaleBuy);
@@ -74,10 +74,15 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           <div className="relative aspect-4/3 sm:aspect-square rounded-xl overflow-hidden bg-stone-200">
             <img
               src={activeImage}
-              alt={product.name}
+              alt={product?.name || 'Product'}
+              onError={(e) => {
+                if (e.currentTarget.src.includes('/images/')) {
+                  e.currentTarget.src = e.currentTarget.src.replace('/images/', '/');
+                }
+              }}
               className="w-full h-full object-cover object-center"
             />
-            {product.badge && (
+            {product?.badge && (
               <span className="absolute top-3 left-3 bg-stone-900/90 text-white text-[11px] font-semibold tracking-wider uppercase px-2.5 py-1 rounded">
                 {product.badge}
               </span>
@@ -85,7 +90,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           </div>
 
           {/* Alternate Image Switcher if available */}
-          {product.secondaryImage && (
+          {product?.secondaryImage && (
             <div className="flex gap-2 mt-3">
               <button
                 onClick={() => setActiveImage(product.image)}
@@ -93,7 +98,16 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   activeImage === product.image ? 'border-stone-900' : 'border-transparent opacity-70 hover:opacity-100'
                 }`}
               >
-                <img src={product.image} alt="Primary angle" className="w-full h-full object-cover" />
+                <img
+                  src={product.image}
+                  alt="Primary angle"
+                  onError={(e) => {
+                    if (e.currentTarget.src.includes('/images/')) {
+                      e.currentTarget.src = e.currentTarget.src.replace('/images/', '/');
+                    }
+                  }}
+                  className="w-full h-full object-cover"
+                />
               </button>
               <button
                 onClick={() => setActiveImage(product.secondaryImage!)}
@@ -101,7 +115,16 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   activeImage === product.secondaryImage ? 'border-stone-900' : 'border-transparent opacity-70 hover:opacity-100'
                 }`}
               >
-                <img src={product.secondaryImage} alt="Styled angle" className="w-full h-full object-cover" />
+                <img
+                  src={product.secondaryImage}
+                  alt="Styled angle"
+                  onError={(e) => {
+                    if (e.currentTarget.src.includes('/images/')) {
+                      e.currentTarget.src = e.currentTarget.src.replace('/images/', '/');
+                    }
+                  }}
+                  className="w-full h-full object-cover"
+                />
               </button>
             </div>
           )}
@@ -186,7 +209,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               </div>
               {isWholesaleBuy && (
                 <p className="text-[11px] text-emerald-700 leading-snug">
-                  ✓ Wholesale rate: ₦{product.wholesalePriceNGN.toLocaleString()} / piece. Resellers earn approx ₦{((product.priceNGN - product.wholesalePriceNGN) * quantity).toLocaleString()} total profit on this batch!
+                  ✓ Wholesale rate: ₦{(product?.wholesalePriceNGN || 0).toLocaleString()} / piece. Resellers earn approx ₦{(((product?.priceNGN ?? product?.price ?? 0) - (product?.wholesalePriceNGN || 0)) * (quantity || 1)).toLocaleString()} total profit on this batch!
                 </p>
               )}
             </div>

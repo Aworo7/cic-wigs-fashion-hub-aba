@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { X, TrendingUp, Sparkles, MessageCircle, Check, DollarSign, Package, Download, Copy, CheckCheck } from 'lucide-react';
+import { X, TrendingUp, Sparkles, MessageCircle, Check, Copy, CheckCheck } from 'lucide-react';
 import { WHOLESALE_PACKS, PRODUCTS } from '../data/products';
-import { VERIFIED_CONTACT, Currency } from '../types';
+import { VERIFIED_CONTACT, Currency, WholesalePack } from '../types';
 
 interface WholesalePortalModalProps {
   isOpen: boolean;
@@ -15,7 +15,6 @@ export const WholesalePortalModal: React.FC<WholesalePortalModalProps> = ({
   currency
 }) => {
   const [copied, setCopied] = useState(false);
-  const [selectedPack, setSelectedPack] = useState(WHOLESALE_PACKS[0]);
 
   if (!isOpen) return null;
 
@@ -25,16 +24,21 @@ export const WholesalePortalModal: React.FC<WholesalePortalModalProps> = ({
     sheet += `📞 Official WhatsApp: ${VERIFIED_CONTACT.phoneDisplay}\n\n`;
     sheet += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
     
-    PRODUCTS.forEach((p, idx) => {
-      if (p.isWholesaleEligible) {
-        const wholesale = currency === 'NGN' ? `₦${p.wholesalePriceNGN?.toLocaleString()}` : `$${p.wholesalePriceUSD}`;
-        const retail = currency === 'NGN' ? `₦${p.priceNGN.toLocaleString()}` : `$${p.priceUSD}`;
+    (PRODUCTS || []).forEach((p, idx) => {
+      if (p?.isWholesaleEligible) {
+        const wholesaleVal = p?.wholesalePriceNGN ?? 0;
+        const retailVal = p?.priceNGN ?? p?.price ?? 0;
+        const wholesaleUSD = p?.wholesalePriceUSD ?? 0;
+        const retailUSD = p?.priceUSD ?? 0;
+
+        const wholesale = currency === 'NGN' ? `₦${(wholesaleVal || 0).toLocaleString()}` : `$${(wholesaleUSD || 0).toLocaleString()}`;
+        const retail = currency === 'NGN' ? `₦${(retailVal || 0).toLocaleString()}` : `$${(retailUSD || 0).toLocaleString()}`;
         const profit = currency === 'NGN' 
-          ? `₦${((p.priceNGN || 0) - (p.wholesalePriceNGN || 0)).toLocaleString()}` 
-          : `$${(p.priceUSD || 0) - (p.wholesalePriceUSD || 0)}`;
+          ? `₦${(Math.max(0, (retailVal || 0) - (wholesaleVal || 0))).toLocaleString()}` 
+          : `$${(Math.max(0, (retailUSD || 0) - (wholesaleUSD || 0))).toLocaleString()}`;
         
-        sheet += `${idx + 1}. *${p.name}*\n`;
-        sheet += `   Wholesale Price: ${wholesale} (Min: ${p.minWholesaleQty || 6} pcs)\n`;
+        sheet += `${idx + 1}. *${p?.name || 'Item'}*\n`;
+        sheet += `   Wholesale Price: ${wholesale} (Min: ${p?.minWholesaleQty || 6} pcs)\n`;
         sheet += `   Suggested Retail: ${retail} (Profit: ${profit}/pc)\n\n`;
       }
     });
@@ -48,13 +52,15 @@ export const WholesalePortalModal: React.FC<WholesalePortalModalProps> = ({
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const generatePackWhatsAppUrl = (pack: typeof WHOLESALE_PACKS[0]) => {
+  const generatePackWhatsAppUrl = (pack: WholesalePack) => {
+    const packPrice = pack?.price ?? pack?.buyInNGN ?? 0;
+    const packProfit = pack?.projectedProfitNGN ?? 0;
     const text = `*WHOLESALE STARTER PACK INQUIRY - CIC HUB ABA*\n\n` +
       `Hello Confidence! 💕 I want to fetch money with nighties and fashion!\n\n` +
-      `📦 *Selected Bundle:* ${pack.name}\n` +
-      `💰 *Buy-in:* ₦${pack.buyInNGN.toLocaleString()}\n` +
-      `✨ *Contents:* ${pack.piecesCount}\n` +
-      `📈 *Projected Profit:* ₦${pack.projectedProfitNGN.toLocaleString()}\n\n` +
+      `📦 *Selected Bundle:* ${pack?.name || 'Starter Bundle'}\n` +
+      `💰 *Buy-in:* ₦${(packPrice || 0).toLocaleString()}\n` +
+      `✨ *Contents:* ${pack?.piecesCount || `${pack?.items || 10} Pieces`}\n` +
+      `📈 *Projected Profit:* ₦${(packProfit || 0).toLocaleString()}\n\n` +
       `Please send me your account details and current in-stock color selections to begin. Thank you!`;
 
     return `https://wa.me/${VERIFIED_CONTACT.phoneClean}?text=${encodeURIComponent(text)}`;
@@ -136,61 +142,71 @@ export const WholesalePortalModal: React.FC<WholesalePortalModalProps> = ({
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {WHOLESALE_PACKS.map((pack) => (
-                <div
-                  key={pack.id}
-                  className={`p-4 rounded-xl border flex flex-col justify-between transition-all ${
-                    pack.id === 'starter-15k'
-                      ? 'border-rose-400 bg-rose-50/30 ring-1 ring-rose-400'
-                      : 'border-stone-200 bg-white hover:border-stone-400'
-                  }`}
-                >
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-start">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-rose-800 bg-rose-100/70 px-2 py-0.5 rounded">
-                        {pack.targetAudience}
-                      </span>
-                    </div>
+              {(WHOLESALE_PACKS || []).map((pack) => {
+                const packPrice = pack?.price ?? pack?.buyInNGN ?? 0;
+                const packProfit = pack?.projectedProfitNGN ?? 0;
+                const isFeatured = pack?.id === 1 || pack?.id === 'starter-15k';
 
-                    <div>
-                      <h5 className="font-serif-brand text-base font-semibold text-stone-950">
-                        {pack.name}
-                      </h5>
-                      <div className="text-xl font-bold text-stone-950 mt-1 tabular-nums">
-                        ₦{pack.buyInNGN.toLocaleString()}
-                        <span className="text-xs font-normal text-stone-500 ml-1">
-                          ({pack.piecesCount})
+                return (
+                  <div
+                    key={String(pack?.id)}
+                    className={`p-4 rounded-xl border flex flex-col justify-between transition-all ${
+                      isFeatured
+                        ? 'border-rose-400 bg-rose-50/30 ring-1 ring-rose-400'
+                        : 'border-stone-200 bg-white hover:border-stone-400'
+                    }`}
+                  >
+                    <div className="space-y-3">
+                      <div className="flex justify-between items-start">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-rose-800 bg-rose-100/70 px-2 py-0.5 rounded">
+                          {pack?.targetAudience || 'Reseller Bundle'}
                         </span>
                       </div>
+
+                      <div>
+                        <h5 className="font-serif-brand text-base font-semibold text-stone-950">
+                          {pack?.name || 'Bundle'}
+                        </h5>
+                        <div className="text-xl font-bold text-stone-950 mt-1 tabular-nums">
+                          ₦{(packPrice || 0).toLocaleString()}
+                          <span className="text-xs font-normal text-stone-500 ml-1">
+                            ({pack?.piecesCount || `${pack?.items || 10} Items`})
+                          </span>
+                        </div>
+                      </div>
+
+                      {packProfit > 0 && (
+                        <div className="p-2.5 bg-emerald-50 rounded-lg text-[11px] text-emerald-800 font-medium border border-emerald-200/60">
+                          💰 Estimated Profit: <strong>+₦{(packProfit || 0).toLocaleString()}</strong>
+                        </div>
+                      )}
+
+                      {pack?.benefits && pack.benefits.length > 0 && (
+                        <ul className="space-y-1 text-[11px] text-stone-600">
+                          {pack.benefits.map((b, i) => (
+                            <li key={i} className="flex items-start gap-1.5">
+                              <Check className="w-3 h-3 text-emerald-600 shrink-0 mt-0.5" />
+                              <span>{b}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </div>
 
-                    <div className="p-2.5 bg-emerald-50 rounded-lg text-[11px] text-emerald-800 font-medium border border-emerald-200/60">
-                      💰 Estimated Profit: <strong>+₦{pack.projectedProfitNGN.toLocaleString()}</strong>
+                    <div className="pt-4 mt-3 border-t border-stone-200">
+                      <a
+                        href={generatePackWhatsAppUrl(pack)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full py-2.5 bg-stone-900 hover:bg-stone-800 text-white font-semibold text-xs rounded-lg transition-colors flex items-center justify-center gap-1.5"
+                      >
+                        <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
+                        <span>Order This Pack</span>
+                      </a>
                     </div>
-
-                    <ul className="space-y-1 text-[11px] text-stone-600">
-                      {pack.benefits.map((b, i) => (
-                        <li key={i} className="flex items-start gap-1.5">
-                          <Check className="w-3 h-3 text-emerald-600 shrink-0 mt-0.5" />
-                          <span>{b}</span>
-                        </li>
-                      ))}
-                    </ul>
                   </div>
-
-                  <div className="pt-4 mt-3 border-t border-stone-200">
-                    <a
-                      href={generatePackWhatsAppUrl(pack)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full py-2.5 bg-stone-900 hover:bg-stone-800 text-white font-semibold text-xs rounded-lg transition-colors flex items-center justify-center gap-1.5"
-                    >
-                      <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
-                      <span>Order This Pack</span>
-                    </a>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
@@ -220,32 +236,35 @@ export const WholesalePortalModal: React.FC<WholesalePortalModalProps> = ({
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-stone-200 text-stone-700 tabular-nums">
-                  {PRODUCTS.filter((p) => p.isWholesaleEligible).map((item) => {
-                    const profitNGN = (item.priceNGN || 0) - (item.wholesalePriceNGN || 0);
+                  {(PRODUCTS || []).filter((p) => p?.isWholesaleEligible).map((item) => {
+                    const retailPrice = item?.priceNGN ?? item?.price ?? 0;
+                    const wholesalePrice = item?.wholesalePriceNGN ?? 0;
+                    const profitNGN = Math.max(0, retailPrice - wholesalePrice);
+
                     return (
-                      <tr key={item.id} className="hover:bg-stone-50/70">
+                      <tr key={item?.id || Math.random()} className="hover:bg-stone-50/70">
                         <td className="py-2.5 px-3 font-semibold text-stone-950">
-                          {item.name}
+                          {item?.name}
                         </td>
                         <td className="py-2.5 px-3 capitalize text-stone-500">
-                          {item.category.replace('-', ' ')}
+                          {item?.category?.replace('-', ' ') || 'Fashion'}
                         </td>
                         <td className="py-2.5 px-3 line-through text-stone-400">
-                          ₦{item.priceNGN.toLocaleString()}
+                          ₦{(retailPrice || 0).toLocaleString()}
                         </td>
                         <td className="py-2.5 px-3 font-bold text-rose-950 bg-rose-50/40">
-                          ₦{item.wholesalePriceNGN?.toLocaleString()}{' '}
+                          ₦{(wholesalePrice || 0).toLocaleString()}{' '}
                           <span className="text-[10px] text-stone-500 font-normal">
-                            (Min: {item.minWholesaleQty || 6})
+                            (Min: {item?.minWholesaleQty || 6})
                           </span>
                         </td>
                         <td className="py-2.5 px-3 font-semibold text-emerald-700">
-                          +₦{profitNGN.toLocaleString()}
+                          +₦{(profitNGN || 0).toLocaleString()}
                         </td>
                         <td className="py-2.5 px-3">
                           <a
                             href={`https://wa.me/${VERIFIED_CONTACT.phoneClean}?text=${encodeURIComponent(
-                              `Hello Confidence! I want to order bulk wholesale of:\n*${item.name}*\nWholesale Rate: ₦${item.wholesalePriceNGN?.toLocaleString()}\nQuantity: 6+ pcs`
+                              `Hello Confidence! I want to order bulk wholesale of:\n*${item?.name || 'Item'}*\nWholesale Rate: ₦${(wholesalePrice || 0).toLocaleString()}\nQuantity: 6+ pcs`
                             )}`}
                             target="_blank"
                             rel="noopener noreferrer"

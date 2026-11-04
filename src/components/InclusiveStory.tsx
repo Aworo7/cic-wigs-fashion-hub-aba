@@ -135,7 +135,7 @@ export const InclusiveStory: React.FC<InclusiveStoryProps> = ({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {REVIEWS.map((rev) => (
+            {(REVIEWS || []).map((rev) => (
               <div
                 key={rev.id}
                 className="bg-white p-5 rounded-xl border border-stone-200/90 shadow-xs flex flex-col justify-between space-y-3"

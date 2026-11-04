@@ -14,7 +14,7 @@ import { WhatsAppFloat } from './components/WhatsAppFloat';
 import { Footer } from './components/Footer';
 import { PRODUCTS, CATEGORY_LABELS } from './data/products';
 import { Category, Product, CartItem, Currency, VERIFIED_CONTACT } from './types';
-import { Search, Filter, SlidersHorizontal, Facebook, Sparkles, RotateCcw, Scissors, TrendingUp, Send, MapPin } from 'lucide-react';
+import { Search, Filter, SlidersHorizontal, Facebook, Sparkles, RotateCcw, Scissors, TrendingUp, MapPin } from 'lucide-react';
 
 export default function App() {
   const [selectedCategory, setSelectedCategory] = useState<Category>('all');
@@ -140,14 +140,15 @@ export default function App() {
 
   // Filtered & Sorted Products
   const filteredProducts = useMemo(() => {
-    return PRODUCTS.filter((product) => {
+    return (PRODUCTS || []).filter((product) => {
+      if (!product) return false;
       // Category filter
       if (selectedCategory !== 'all' && product.category !== selectedCategory) {
         return false;
       }
       // Size filter
       if (selectedSize !== 'all') {
-        const hasSize = product.sizes.some(
+        const hasSize = (product.sizes || []).some(
           (s) => s.toLowerCase() === selectedSize.toLowerCase() || s === 'One Size'
         );
         if (!hasSize) return false;
@@ -155,29 +156,29 @@ export default function App() {
       // Search query
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase();
-        const matchesName = product.name.toLowerCase().includes(q);
-        const matchesTagline = product.tagline.toLowerCase().includes(q);
-        const matchesDesc = product.description.toLowerCase().includes(q);
-        const matchesCat = product.category.toLowerCase().includes(q);
+        const matchesName = (product.name || '').toLowerCase().includes(q);
+        const matchesTagline = (product.tagline || '').toLowerCase().includes(q);
+        const matchesDesc = (product.description || '').toLowerCase().includes(q);
+        const matchesCat = (product.category || '').toLowerCase().includes(q);
         if (!matchesName && !matchesTagline && !matchesDesc && !matchesCat) {
           return false;
         }
       }
       return true;
     }).sort((a, b) => {
-      const priceA = isWholesaleMode && a.wholesalePriceNGN ? a.wholesalePriceNGN : a.priceNGN;
-      const priceB = isWholesaleMode && b.wholesalePriceNGN ? b.wholesalePriceNGN : b.priceNGN;
-      const priceAUSD = isWholesaleMode && a.wholesalePriceUSD ? a.wholesalePriceUSD : a.priceUSD;
-      const priceBUSD = isWholesaleMode && b.wholesalePriceUSD ? b.wholesalePriceUSD : b.priceUSD;
+      const priceA = isWholesaleMode && a.wholesalePriceNGN ? a.wholesalePriceNGN : (a.priceNGN ?? a.price ?? 0);
+      const priceB = isWholesaleMode && b.wholesalePriceNGN ? b.wholesalePriceNGN : (b.priceNGN ?? b.price ?? 0);
+      const priceAUSD = isWholesaleMode && a.wholesalePriceUSD ? a.wholesalePriceUSD : (a.priceUSD ?? 0);
+      const priceBUSD = isWholesaleMode && b.wholesalePriceUSD ? b.wholesalePriceUSD : (b.priceUSD ?? 0);
 
       if (sortBy === 'price-asc') {
-        return currency === 'NGN' ? priceA - priceB : priceAUSD - priceBUSD;
+        return currency === 'NGN' ? (priceA || 0) - (priceB || 0) : (priceAUSD || 0) - (priceBUSD || 0);
       }
       if (sortBy === 'price-desc') {
-        return currency === 'NGN' ? priceB - priceA : priceBUSD - priceAUSD;
+        return currency === 'NGN' ? (priceB || 0) - (priceA || 0) : (priceBUSD || 0) - (priceAUSD || 0);
       }
       if (sortBy === 'rating') {
-        return b.rating - a.rating;
+        return (b.rating || 0) - (a.rating || 0);
       }
       return 0; // 'featured' retains curated order
     });
@@ -226,7 +227,6 @@ export default function App() {
         isWholesaleMode={isWholesaleMode}
         onToggleWholesaleMode={() => setIsWholesaleMode((v) => !v)}
       />
-
 
       <main className="flex-1">
         {/* Boutique Hero Campaign */}
@@ -384,7 +384,7 @@ export default function App() {
             {/* Active Query Status Indicator */}
             <div className="flex items-center justify-between text-xs text-stone-500 pt-1">
               <div>
-                Showing <strong className="text-stone-900 font-semibold tabular-nums">{filteredProducts.length}</strong> items
+                Showing <strong className="text-stone-900 font-semibold tabular-nums">{(filteredProducts || []).length}</strong> items
                 {selectedCategory !== 'all' && (
                   <span> in <strong className="text-stone-900">{CATEGORY_LABELS[selectedCategory]}</strong></span>
                 )}
@@ -413,7 +413,7 @@ export default function App() {
           </div>
 
           {/* Product Grid */}
-          {filteredProducts.length === 0 ? (
+          {(filteredProducts || []).length === 0 ? (
             <div className="py-20 text-center bg-white rounded-2xl border border-stone-200 p-8 space-y-4">
               <p className="font-serif-brand text-2xl text-stone-800">
                 No matching pieces found
@@ -434,7 +434,7 @@ export default function App() {
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-              {filteredProducts.map((product) => (
+              {(filteredProducts || []).map((product) => (
                 <ProductCard
                   key={product.id}
                   product={product}
@@ -551,7 +551,6 @@ export default function App() {
         onClose={() => setWholesaleOpen(false)}
         currency={currency}
       />
-
 
       {/* Legal Pages Modal (/return-policy, /shipping, /privacy-policy) */}
       <LegalModal

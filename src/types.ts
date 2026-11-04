@@ -14,6 +14,7 @@ export interface Product {
   category: Category;
   genderFocus: 'Female' | 'Male' | 'Unisex';
   tagline: string;
+  price?: number;
   priceNGN: number;
   priceUSD: number;
   wholesalePriceNGN?: number;
@@ -37,6 +38,19 @@ export interface Product {
   badge?: string;
   inStock: boolean;
   isWholesaleEligible?: boolean;
+}
+
+export interface WholesalePack {
+  id: string | number;
+  name: string;
+  price?: number;
+  buyInNGN?: number;
+  buyInUSD?: number;
+  items?: number;
+  piecesCount?: string;
+  projectedProfitNGN?: number;
+  targetAudience?: string;
+  benefits?: string[];
 }
 
 export interface CartItem {

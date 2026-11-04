@@ -37,26 +37,30 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
 
   if (!isOpen) return null;
 
-  const rawSubtotalNGN = items.reduce((sum, item) => {
-    const unitPrice = item.isWholesale && item.product.wholesalePriceNGN ? item.product.wholesalePriceNGN : item.product.priceNGN;
-    return sum + unitPrice * item.quantity;
+  const rawSubtotalNGN = (items || []).reduce((sum, item) => {
+    const unitPrice = item?.isWholesale && item?.product?.wholesalePriceNGN
+      ? item.product.wholesalePriceNGN
+      : (item?.product?.priceNGN ?? item?.product?.price ?? 0);
+    return sum + (unitPrice || 0) * (item?.quantity || 1);
   }, 0);
 
-  const rawSubtotalUSD = items.reduce((sum, item) => {
-    const unitPrice = item.isWholesale && item.product.wholesalePriceUSD ? item.product.wholesalePriceUSD : item.product.priceUSD;
-    return sum + unitPrice * item.quantity;
+  const rawSubtotalUSD = (items || []).reduce((sum, item) => {
+    const unitPrice = item?.isWholesale && item?.product?.wholesalePriceUSD
+      ? item.product.wholesalePriceUSD
+      : (item?.product?.priceUSD ?? 0);
+    return sum + (unitPrice || 0) * (item?.quantity || 1);
   }, 0);
 
-  const discountAmountNGN = (rawSubtotalNGN * discountPercent) / 100;
-  const discountAmountUSD = (rawSubtotalUSD * discountPercent) / 100;
+  const discountAmountNGN = ((rawSubtotalNGN || 0) * (discountPercent || 0)) / 100;
+  const discountAmountUSD = ((rawSubtotalUSD || 0) * (discountPercent || 0)) / 100;
 
-  const finalTotalNGN = rawSubtotalNGN - discountAmountNGN;
-  const finalTotalUSD = rawSubtotalUSD - discountAmountUSD;
+  const finalTotalNGN = (rawSubtotalNGN || 0) - discountAmountNGN;
+  const finalTotalUSD = (rawSubtotalUSD || 0) - discountAmountUSD;
 
   const formattedTotal =
     currency === 'NGN'
-      ? `₦${finalTotalNGN.toLocaleString()}`
-      : `$${finalTotalUSD.toLocaleString()}`;
+      ? `₦${(finalTotalNGN || 0).toLocaleString()}`
+      : `$${(finalTotalUSD || 0).toLocaleString()}`;
 
   const handleApplyPromo = () => {
     setPromoError('');
@@ -76,13 +80,15 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
   const generateWhatsAppCheckoutUrl = () => {
     let orderText = `*NEW ORDER - CIC WIGS & FASHION HUB (ABA)* 💕\n`;
     orderText += `👑 Founder: Confidence Okonkwo\n\n`;
-    items.forEach((item, index) => {
-      const unitPrice = item.isWholesale && item.product.wholesalePriceNGN ? item.product.wholesalePriceNGN : item.product.priceNGN;
-      orderText += `${index + 1}. *${item.product.name}*\n`;
-      orderText += `   Tier: ${item.isWholesale ? 'WHOLESALE BULK' : 'RETAIL'}\n`;
-      orderText += `   Size/Length: ${item.selectedSize} | Color: ${item.selectedColor}\n`;
-      orderText += `   Qty: ${item.quantity} × ${
-        currency === 'NGN' ? `₦${unitPrice.toLocaleString()}` : `$${unitPrice}`
+    (items || []).forEach((item, index) => {
+      const unitPrice = item?.isWholesale && item?.product?.wholesalePriceNGN
+        ? item.product.wholesalePriceNGN
+        : (item?.product?.priceNGN ?? item?.product?.price ?? 0);
+      orderText += `${index + 1}. *${item?.product?.name || 'Product'}*\n`;
+      orderText += `   Tier: ${item?.isWholesale ? 'WHOLESALE BULK' : 'RETAIL'}\n`;
+      orderText += `   Size/Length: ${item?.selectedSize} | Color: ${item?.selectedColor}\n`;
+      orderText += `   Qty: ${item?.quantity || 1} × ${
+        currency === 'NGN' ? `₦${(unitPrice || 0).toLocaleString()}` : `$${unitPrice || 0}`
       }\n\n`;
     });
 
@@ -279,22 +285,31 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
           ) : (
             /* Itemized list */
             <div className="space-y-3">
-              {items.map((item, idx) => {
-                const unitPrice = item.isWholesale && item.product.wholesalePriceNGN ? item.product.wholesalePriceNGN : item.product.priceNGN;
-                const unitPriceUSD = item.isWholesale && item.product.wholesalePriceUSD ? item.product.wholesalePriceUSD : item.product.priceUSD;
+              {(items || []).map((item, idx) => {
+                const unitPrice = item?.isWholesale && item?.product?.wholesalePriceNGN
+                  ? item.product.wholesalePriceNGN
+                  : (item?.product?.priceNGN ?? item?.product?.price ?? 0);
+                const unitPriceUSD = item?.isWholesale && item?.product?.wholesalePriceUSD
+                  ? item.product.wholesalePriceUSD
+                  : (item?.product?.priceUSD ?? 0);
                 const itemPrice =
                   currency === 'NGN'
-                    ? `₦${(unitPrice * item.quantity).toLocaleString()}`
-                    : `$${(unitPriceUSD * item.quantity).toLocaleString()}`;
+                    ? `₦${((unitPrice || 0) * (item?.quantity || 1)).toLocaleString()}`
+                    : `$${((unitPriceUSD || 0) * (item?.quantity || 1)).toLocaleString()}`;
 
                 return (
                   <div
-                    key={`${item.product.id}-${item.selectedSize}-${item.selectedColor}-${item.isWholesale ? 'ws' : 'rt'}-${idx}`}
+                    key={`${item?.product?.id || idx}-${item?.selectedSize}-${item?.selectedColor}-${item?.isWholesale ? 'ws' : 'rt'}-${idx}`}
                     className="flex gap-3 p-3 bg-stone-50 rounded-xl border border-stone-200/80"
                   >
                     <img
-                      src={item.product.image}
-                      alt={item.product.name}
+                      src={item?.product?.image}
+                      alt={item?.product?.name || 'Product'}
+                      onError={(e) => {
+                        if (e.currentTarget.src.includes('/images/')) {
+                          e.currentTarget.src = e.currentTarget.src.replace('/images/', '/');
+                        }
+                      }}
                       className="w-16 h-16 rounded-lg object-cover bg-stone-200 shrink-0"
                     />
 
@@ -406,8 +421,8 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                 <span>Subtotal:</span>
                 <span className="tabular-nums font-medium text-stone-900">
                   {currency === 'NGN'
-                    ? `₦${rawSubtotalNGN.toLocaleString()}`
-                    : `$${rawSubtotalUSD.toLocaleString()}`}
+                    ? `₦${(rawSubtotalNGN || 0).toLocaleString()}`
+                    : `$${(rawSubtotalUSD || 0).toLocaleString()}`}
                 </span>
               </div>
               {discountPercent > 0 && (
@@ -415,8 +430,8 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   <span>VIP Discount ({discountPercent}%):</span>
                   <span className="tabular-nums font-medium">
                     -{currency === 'NGN'
-                      ? `₦${discountAmountNGN.toLocaleString()}`
-                      : `$${discountAmountUSD.toLocaleString()}`}
+                      ? `₦${(discountAmountNGN || 0).toLocaleString()}`
+                      : `$${(discountAmountUSD || 0).toLocaleString()}`}
                   </span>
                 </div>
               )}

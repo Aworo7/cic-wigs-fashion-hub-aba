@@ -17,25 +17,33 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   onQuickView,
   onAddToCart
 }) => {
-  const displayPrice = isWholesaleMode && product.wholesalePriceNGN
-    ? (currency === 'NGN' ? `₦${product.wholesalePriceNGN.toLocaleString()}` : `$${product.wholesalePriceUSD}`)
-    : (currency === 'NGN' ? `₦${product.priceNGN.toLocaleString()}` : `$${product.priceUSD}`);
+  const priceVal = product?.priceNGN ?? product?.price ?? 0;
+  const wholesaleVal = product?.wholesalePriceNGN ?? 0;
+  const priceUSDVal = product?.priceUSD ?? 0;
+  const wholesaleUSDVal = product?.wholesalePriceUSD ?? 0;
 
-  const retailStrikethrough = isWholesaleMode && product.wholesalePriceNGN
-    ? (currency === 'NGN' ? `₦${product.priceNGN.toLocaleString()}` : `$${product.priceUSD}`)
+  const displayPrice = isWholesaleMode && wholesaleVal > 0
+    ? (currency === 'NGN' ? `₦${(wholesaleVal || 0).toLocaleString()}` : `$${(wholesaleUSDVal || 0).toLocaleString()}`)
+    : (currency === 'NGN' ? `₦${(priceVal || 0).toLocaleString()}` : `$${(priceUSDVal || 0).toLocaleString()}`);
+
+  const retailStrikethrough = isWholesaleMode && wholesaleVal > 0
+    ? (currency === 'NGN' ? `₦${(priceVal || 0).toLocaleString()}` : `$${(priceUSDVal || 0).toLocaleString()}`)
     : null;
 
-  const profitPerPiece = isWholesaleMode && product.wholesalePriceNGN
+  const profitVal = Math.max(0, priceVal - wholesaleVal);
+  const profitUSDVal = Math.max(0, priceUSDVal - wholesaleUSDVal);
+
+  const profitPerPiece = isWholesaleMode && wholesaleVal > 0
     ? (currency === 'NGN'
-        ? `+₦${(product.priceNGN - product.wholesalePriceNGN).toLocaleString()} profit`
-        : `+$${(product.priceUSD - (product.wholesalePriceUSD || 0))} profit`)
+        ? `+₦${(profitVal || 0).toLocaleString()} profit`
+        : `+$${(profitUSDVal || 0).toLocaleString()} profit`)
     : null;
 
-  const defaultSize = product.sizes[0] || 'One Size';
-  const defaultColor = product.colors[0]?.name || 'Standard';
+  const defaultSize = product?.sizes?.[0] || 'Standard';
+  const defaultColor = product?.colors?.[0]?.name || 'Standard';
 
   const whatsappInquiryUrl = `https://wa.me/${VERIFIED_CONTACT.phoneClean}?text=${encodeURIComponent(
-    `Hello Confidence! 💕 I am interested in:\n*${product.name}*\n${isWholesaleMode ? `Wholesale Rate: ${displayPrice} (Bulk Order)` : `Price: ${displayPrice}`}\nPlease let me know if it's currently available in stock. Thank you!`
+    `Hello Confidence! 💕 I am interested in:\n*${product?.name || 'Item'}*\n${isWholesaleMode ? `Wholesale Rate: ${displayPrice} (Bulk Order)` : `Price: ${displayPrice}`}\nPlease let me know if it's currently available in stock. Thank you!`
   )}`;
 
   return (
@@ -43,21 +51,27 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {/* Product Image Frame */}
       <div className="relative aspect-4/3 bg-stone-100 overflow-hidden cursor-pointer" onClick={() => onQuickView(product)}>
         <img
-          src={product.image}
-          alt={product.name}
+          src={product?.image || '/images/hero_cic_nightwear_loungewear_1793771101080.jpg'}
+          alt={product?.name || 'Product'}
+          onError={(e) => {
+            const target = e.currentTarget;
+            if (target.src.includes('/images/')) {
+              target.src = target.src.replace('/images/', '/');
+            }
+          }}
           className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
           loading="lazy"
         />
 
         {/* Badge */}
-        {product.badge && (
+        {product?.badge && (
           <div className="absolute top-3 left-3 bg-stone-900/90 text-stone-100 text-[11px] font-medium tracking-wide uppercase px-2.5 py-1 rounded backdrop-blur-xs">
             {product.badge}
           </div>
         )}
 
         {/* Wholesale Mode Indicator Badge */}
-        {isWholesaleMode && product.isWholesaleEligible && (
+        {isWholesaleMode && product?.isWholesaleEligible && (
           <div className="absolute top-3 right-3 bg-emerald-700 text-white text-[10px] font-bold tracking-wide uppercase px-2 py-0.5 rounded shadow-xs flex items-center gap-1">
             <TrendingUp className="w-3 h-3" />
             <span>Aba Wholesale</span>
@@ -107,14 +121,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <div className="space-y-1.5">
           {/* Clean unboxed metadata with dot separators */}
           <div className="flex items-center gap-2 text-xs text-stone-500 font-medium">
-            <span className="capitalize">{product.category.replace('-', ' ')}</span>
+            <span className="capitalize">{(product?.category || 'fashion').replace('-', ' ')}</span>
             <span aria-hidden="true">·</span>
-            <span>{product.genderFocus} Focus</span>
+            <span>{product?.genderFocus || 'Universal'} Focus</span>
             <span aria-hidden="true">·</span>
             <span className="flex items-center gap-0.5 text-stone-700">
               <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
-              <span className="font-semibold tabular-nums">{product.rating}</span>
-              <span className="text-stone-400">({product.reviewsCount})</span>
+              <span className="font-semibold tabular-nums">{product?.rating || 5.0}</span>
+              <span className="text-stone-400">({product?.reviewsCount || 0})</span>
             </span>
           </div>
 
@@ -123,12 +137,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             onClick={() => onQuickView(product)}
             className="font-serif-brand text-lg font-medium text-stone-950 hover:text-rose-950 transition-colors line-clamp-1 cursor-pointer"
           >
-            {product.name}
+            {product?.name || 'Luxury Fashion Item'}
           </h3>
 
           {/* Tagline / Micro description */}
           <p className="text-xs text-stone-600 line-clamp-2 leading-relaxed">
-            {product.tagline}
+            {product?.tagline}
           </p>
         </div>
 
@@ -137,7 +151,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <div>
             {/* Color Swatch Dots */}
             <div className="flex items-center gap-1.5 mb-1.5">
-              {product.colors.map((c) => (
+              {(product?.colors || []).map((c) => (
                 <span
                   key={c.name}
                   title={c.name}
@@ -146,7 +160,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 />
               ))}
               <span className="text-[11px] text-stone-400 ml-1">
-                {product.sizes.length > 1 ? `${product.sizes[0]}–${product.sizes[product.sizes.length - 1]}` : 'Standard'}
+                {product?.sizes && product.sizes.length > 1
+                  ? `${product.sizes[0]}–${product.sizes[product.sizes.length - 1]}`
+                  : 'Standard'}
               </span>
             </div>
 
