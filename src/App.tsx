@@ -227,22 +227,6 @@ export default function App() {
         onToggleWholesaleMode={() => setIsWholesaleMode((v) => !v)}
       />
 
-      {/* Pitch Helper Strip */}
-      <div className="bg-rose-950 text-rose-100 px-4 py-2 border-b border-rose-900 text-xs flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-2">
-          <Sparkles className="w-3.5 h-3.5 text-rose-300 shrink-0" />
-          <span>
-            Pitching Confidence Okonkwo? Preview the ready-made WhatsApp proposal tailored to her exact business operations!
-          </span>
-        </div>
-        <button
-          onClick={() => setPitchOpen(true)}
-          className="px-3 py-1 bg-white text-rose-950 rounded font-semibold text-[11px] hover:bg-rose-100 transition-colors flex items-center gap-1.5 shadow-2xs cursor-pointer whitespace-nowrap"
-        >
-          <Send className="w-3 h-3 text-emerald-700" />
-          <span>View Tailored WhatsApp Pitch Message</span>
-        </button>
-      </div>
 
       <main className="flex-1">
         {/* Boutique Hero Campaign */}
