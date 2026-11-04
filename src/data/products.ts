@@ -1,4 +1,4 @@
-export const products = [
+export const PRODUCTS = [
   {
     id: 1,
     name: "Luxury Human Hair Wig - Body Wave",
@@ -91,3 +91,15 @@ export const products = [
     description: "Professional wig revamp service"
   }
 ];
+
+export const CATEGORY_LABELS: Record<string, string> = {
+  "Wigs & Hair": "Wigs & Hair",
+  "Intimates": "Intimates",
+  "Stylish Bags": "Stylish Bags",
+  "Nightwear (Aba)": "Nightwear (Aba)",
+  "Loungewear": "Loungewear",
+  "Bags": "Bags",
+  "BOOK REVAMP": "BOOK REVAMP"
+};
+
+export const products = PRODUCTS;
